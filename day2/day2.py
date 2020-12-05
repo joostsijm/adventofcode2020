@@ -6,15 +6,16 @@ def main():
     for line in read():
         policy, password = line.split(': ')
         times, letter = policy.split(' ')
-        min_times, max_times = times.split('-')
-        min_times = int(min_times)
-        max_times = int(max_times)
-        print(min_times, max_times, letter, password)
-        character_count = 0
-        for character in password:
-            if character == letter:
-                character_count += 1
-        if min_times <= character_count <= max_times:
+        first_position, second_position = times.split('-')
+        first_position = int(first_position) - 1
+        second_position = int(second_position) - 1
+        print(first_position, second_position, letter, password)
+        valid = False
+        if password[first_position] == letter:
+            valid = not valid
+        if password[second_position] == letter:
+            valid = not valid
+        if valid:
             valid_passports += 1
     print(valid_passports)
 
